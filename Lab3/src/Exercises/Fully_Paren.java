@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Fully_Paren {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args)
 
 	{

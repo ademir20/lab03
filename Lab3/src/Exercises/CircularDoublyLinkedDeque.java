@@ -1,332 +1,154 @@
 package Exercises;
+
 import queues.Deque;
 
 public class CircularDoublyLinkedDeque<E> implements Deque<E> {
 
-      // private inner class representing a Node in linked list representation of
+    static class Elem<T> {
 
-      // the queue
+        final T value;
 
-      private class Node {
+        Elem<T> previous;
+        Elem<T> next;
 
-            E item;
+        private Elem(T value, Elem<T> previous, Elem<T> next) {
+            this.value = value;
+            this.previous = previous;
+            this.next = next;
+        }
+    }
 
-            Node next;
+    private Elem<E> head;
+    private int size;
 
-            Node prev;
+    public CircularDoublyLinkedDeque() {
+        // dummy node
+        head = new Elem<E>(null, null, null);
+        head.next = head;
+        head.previous = head;
+        size = 0;
+    }
 
-            // constructor initializing item
+    public int size() {
+        return size;
+    }
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    public void clear() {
+        head = new Elem<E>(null, null, null);
+        head.next = head;
+        head.previous = head;
+        size = 0;
+    }
+    public E[] toArray() {
+        E result[] = (E []) new Object[size];
+        int i = 0;
+        Elem<E> current;
+        current = head.next;
+        while (i < size) {
+            result[i++] = current.value;
+            current = current.next;
+        }
+        return result;
+    }
 
-            public Node(E item) {
+    // Helper method. Adds an element to the list after the specified
+    // node.
+    private void addAfter(Elem<E> before, E obj) {
+        Elem<E> after = before.next;
 
-                  this.item = item;
+        before.next = new Elem<E>(obj, before, after);
+        after.previous = before.next;
 
-                  next = null;
+        size++;
+    }
 
-                  prev = null;
+    // Helper method. Removes the specified node.
+    private void remove(Elem<E> current) {
+        Elem<E> before = current.previous, after = current.next;
+        before.next = after;
+        after.previous = before;
+        size--;
+    }
+    
+    public String toString() {
 
+        StringBuffer str = new StringBuffer("{");
+        Elem<E> p = head.next;
+
+        while (p != head) {
+            str.append(p.value);
+            if (p.next != head) {
+                str.append(",");
             }
-
-      }
-
-      // pointer to the dummy head node
-
-      private Node head;
-
-      // variable to store current size
-
-      private int size;
-
-      // constructor initializing queue
-
-      public CircularDoublyLinkedDeque() {
-
-            // initializing dummy head node
-
-            head = new Node(null);
-
-            // setting head as both prev and next of head
-
-            head.next = head;
-
-            head.prev = head;
-
-            // size is 0
-
-            size = 0;
-
-      }
-
-      // returns the size
-
-      public int size() {
-
-            return size;
-
-      }
-
-      // returns true if deque is empty
-
-      public boolean isEmpty() {
-
-            return size == 0;
-
-      }
-
-      // clears the contents of the deque
-
-      public void clear() {
-
-            head = new Node(null);
-
-            // setting head as both prev and next of head
-
-            head.next = head;
-
-            head.prev = head;
-
-            size = 0;
-
-      }
-
-      // returns first element without removing
-
-      public E getFirst() {
-
-            // returning null if empty, you may throw an exception if you prefer
-
-            // that.
-
-            if (isEmpty()) {
-
-                  return null;
-
-            }
-
-            // otherwise returning item of first node (head.next is the first)
-
-            return head.next.item;
-
-      }
-
-      // returns last element without removing
-
-      public E getLast() {
-
-            // returning null if empty, you may throw an exception if you prefer
-
-            // that.
-
-            if (isEmpty()) {
-
-                  return null;
-
-            }
-
-            // otherwise returning item of last node (head.prev is the last)
-
-            return head.prev.item;
-
-      }
-
-      // adds an element to the first
-
-      public void addFirst(E element) throws IllegalArgumentException {
-
-            // throwing exception if element is null
-
-            if (element == null) {
-
-                  throw new IllegalArgumentException();
-
-            }
-
-            // creating a new node
-
-            Node node = new Node(element);
-
-            // checking if deque is empty
-
-            if (isEmpty()) {
-
-                  // setting head as next of node
-
-                  node.next = head;
-
-                  // setting head as prev of node
-
-                  node.prev = head;
-
-                  // setting node as next of head
-
-                  head.next = node;
-
-                  // setting node as prev of head
-
-                  head.prev = node;
-
-            } else {
-
-                  // otherwise setting current first node as next of node
-
-                  node.next = head.next;
-
-                  // setting head as prev of node
-
-                  node.prev = head;
-
-                  // setting node as prev of current first
-
-                  head.next.prev = node;
-
-                  // setting node as new first
-
-                  head.next = node;
-
-            }
-
-            // updating size
-
-            size++;
-
-      }
-
-      // adds an element to the last
-
-      public void addLast(E element) throws IllegalArgumentException {
-
-            // throwing exception if element is null
-
-            if (element == null) {
-
-                  throw new IllegalArgumentException();
-
-            }
-
-            Node node = new Node(element);
-
-            // if deque is empty, adding as the first and last in the same way as
-
-            // previous method
-
-            if (isEmpty()) {
-
-                  node.next = head;
-
-                  node.prev = head;
-
-                  head.next = node;
-
-                  head.prev = node;
-
-            } else {
-
-                  // otherwise adding node between head.prev and head
-
-                  Node currLast = head.prev;
-
-                  node.next = head;
-
-                  node.prev = currLast;
-
-                  currLast.next = node;
-
-                  head.prev = node;
-
-            }
-
-            size++;
-
-      }
-
-      // removes and returns the first element
-
-      public E removeFirst() {
-
-            // returning null if empty, you may throw an exception if you prefer
-
-            // that.
-
-            if (isEmpty()) {
-
-                  return null;
-
-            }
-
-            // getting first node
-
-            Node first = head.next;
-
-            // connecting previous and next nodes of first
-
-            first.prev.next = first.next;
-
-            first.next.prev = first.prev;
-
-            // updating size
-
-            size--;
-
-            // returning removed element
-
-            return first.item;
-
-      }
-
-      // removes and returns the last element
-
-      public E removeLast() {
-
-            // returning null if empty, you may throw an exception if you prefer
-
-            // that.
-
-            if (isEmpty()) {
-
-                  return null;
-
-            }
-
-            // getting last node and connecting previous and next nodes of last
-
-            Node last = head.prev;
-
-            last.prev.next = last.next;
-
-            last.next.prev = last.prev;
-
-            size--;
-
-            return last.item;
-
-      }
-
-      //returns queue elements as an array
-
-      public E[] toArray() {
-
-            //creating array of enough size
-
-            @SuppressWarnings("unchecked")
-
-            E[] arr = (E[]) new Object[size];
-
-            //getting reference to first node
-
-            Node node = head.next;
-
-            //adding each item to the array and returning it
-
-            for (int i = 0; i < size; i++) {
-
-                  arr[i] = node.item;
-
-                  node = node.next;
-
-            }
-
-            return arr;
-
-      }
-
+            p = p.next;
+        }
+        str.append("}");
+        return str.toString();
+    }
+
+    public static void main(String[] args) {
+        CircularDoublyLinkedDeque<Integer> list = new CircularDoublyLinkedDeque<>();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        System.out.println(list);
+
+        System.out.println(list.removeFirst());
+        System.out.println(list);
+    }
+
+    @Override
+    public E getFirst() {
+        if (size == 0) {
+            return null;
+        }
+        return head.next.value;
+    }
+
+    @Override
+    public E getLast() {
+        if (size == 0) {
+            return null;
+        }
+        return head.previous.value;
+    }
+
+    @Override
+    public void addFirst(E element) throws IllegalArgumentException {
+        if (element == null) {
+            throw new IllegalArgumentException();
+        }
+        addAfter(head, element);        
+    }
+
+    @Override
+    public void addLast(E element) throws IllegalArgumentException {
+        if (element == null) {
+            throw new IllegalArgumentException();
+        }
+        addAfter(head.previous, element);
+    }
+
+    @Override
+    public E removeFirst() {
+        if (size == 0) {
+            return null;
+        }
+        Elem<E> x = head.next;
+        remove(head.next);
+        return x.value;
+    }
+
+    @Override
+    public E removeLast() {
+        if (size == 0) {
+            return null;
+        }
+        Elem<E> x = head.previous;
+        remove(head.previous);
+        return x.value;
+    }
 }
