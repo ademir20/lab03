@@ -1,4 +1,5 @@
 package Exercises;
+
 public class SinglyLinkeQueue <E> {
 
 	// references to head and tail nodes
@@ -166,6 +167,38 @@ public class SinglyLinkeQueue <E> {
 		str += "]";
 
 		return str;
+
+	}
+
+	// a simple main method for testing. remove if you don't need.
+
+	public static void main(String[] args) {
+
+		// creating an integer queue, adding numbers from 1 to 9
+
+		SinglyLinkeQueue<Integer> q = new SinglyLinkeQueue<Integer>();
+
+		for (int i = 1; i < 10; i++) {
+
+			q.enqueue(i);
+
+			// printing queue after each enqueue operation
+
+			System.out.println(q);
+
+		}
+
+		// looping and calling dequeue method, printing the queue until queue is
+
+		// empty
+
+		while (!q.isEmpty()) {
+
+			q.dequeue();
+
+			System.out.println(q);
+
+		}
 
 	}
 

@@ -4,14 +4,14 @@ import queues.Deque;
 
 public class CircularDoublyLinkedDeque<E> implements Deque<E> {
 
-    static class Elem<T> {
+    static class Elem<E> {
 
-        final T value;
+        final E value;
 
-        Elem<T> previous;
-        Elem<T> next;
+        Elem<E> previous;
+        Elem<E> next;
 
-        private Elem(T value, Elem<T> previous, Elem<T> next) {
+        private Elem(E value, Elem<E> previous, Elem<E> next) {
             this.value = value;
             this.previous = previous;
             this.next = next;
