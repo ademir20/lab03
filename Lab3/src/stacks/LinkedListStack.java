@@ -1,4 +1,4 @@
-package ciic4020.queue;
+package stacks;
 
 public class LinkedListStack<E> implements Stack<E> {
 

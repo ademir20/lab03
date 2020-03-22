@@ -1,4 +1,4 @@
-package ciic4020.queue;
+package queues;
 
 public class DoublyLinkedQueue<E> implements Queue<E> {
 

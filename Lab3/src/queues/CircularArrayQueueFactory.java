@@ -1,4 +1,4 @@
-package ciic4020.queue;
+package queues;
 
 public class CircularArrayQueueFactory<E> implements QueueFactory<E> {
 

@@ -1,12 +1,14 @@
-package ciic4020.queue;
+package Exercises;
+import queues.DoublyLinkedQueue;
+import stacks.LinkedListStack;
 
 public class Palidnromes  {
 
 
 	public static boolean isPalindrome(String s) {
 		s.toLowerCase().trim();
-		DoublyLinkedQueue<Character> queue = new DoublyLinkedQueue<>();
-		LinkedListStack<Character> stack = new LinkedListStack<>();
+		queues.DoublyLinkedQueue<Character> queue = new DoublyLinkedQueue<>();
+		stacks.LinkedListStack<Character> stack = new LinkedListStack<>();
 
 		for( int i =0 ; i < s.length(); i++) {
 			queue.enqueue(s.charAt(i));

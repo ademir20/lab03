@@ -1,9 +1,8 @@
-package ciic4020.queue.test;
+package Tests;
 
-//import ciic4020.queue.DoublyLinkedQueueFactory;
-import ciic4020.queue.CircularArrayQueueFactory;
-import ciic4020.queue.Queue;
-import ciic4020.queue.QueueFactory;
+import queues.CircularArrayQueueFactory;
+import queues.Queue;
+import queues.QueueFactory;
 
 public class QueueTest {
 

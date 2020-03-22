@@ -1,9 +1,8 @@
-package ciic4020.queue.test;
+package Tests;
 
-import ciic4020.queue.Stack;
-import ciic4020.queue.StackFactory;
-import ciic4020.queue.ArrayStackFactory;
-//import ciic4020.stack.LinkedListStackFactory;
+import stacks.ArrayStackFactory;
+import stacks.Stack;
+import stacks.StackFactory;
 
 public class StackTest {
 
