@@ -3,15 +3,12 @@ package Exercises;
 
 public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
-	// references to head and tail nodes
 
 	private Node header, tail;
 
-	private int currentSize; // current size of the queue
+	private int currentSize; // Current size of the queue -Ademir
 
-	// private inner class representing a Node in linked list representation of
 
-	// the queue
 
 	private class Node {
 
@@ -19,7 +16,7 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 		private Node next;
 
-		// constructor initializing item and next node
+		// Constructor -Ademir
 
 		public Node(E element, Node next) {
 
@@ -31,7 +28,6 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 	}
 
-	// constructor, creates an empty queue
 
 	public SinglyLinkedQueue(){
 
@@ -43,23 +39,18 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 	}
 
-	// returns true if queue is empty (runs in O(1) time)
-
 	public boolean isEmpty() {
 
 		return currentSize == 0;
 
 	}
 
-	// adds an element to the tail (runs in O(1) time)
+	// adds an element to the tail-Ademir
 
 	public void enqueue(E element) {
 
-		// creating a new node
-
 		Node newNode = new Node(element, null);
 
-		// if queue is currently empty, adding as both head and tail
 
 		if (isEmpty()) {
 
@@ -69,7 +60,7 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 		} else {
 
-			// appending to tail and updating tail
+		
 
 			tail.next = newNode;
 
@@ -77,27 +68,26 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 		}
 
-		// updating size
 
 		currentSize++;
 
 	}
 
-	// removes and returns the front value, will return null if queue is empty (runs in O(1) time)
+
 
 	public E dequeue() {
 
 		if (header != null) {
 
-			// getting item on front
+	
 
 			E element = header.element;
 
-			// updating head
+			
 
 			header = header.next;
 
-			// if head became null, setting tail to null
+			// If head isnull, setting tail to null -Ademir
 
 			if (header == null) {
 
@@ -105,27 +95,27 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 			}
 
-			// updating size
+			// Update Size -Ademir
 
 			currentSize--;
 
-			// returning removed value
+			// Returning removed element -Ademir
 
 			return element;
 
 		}
 
-		return null;// empty
+		return null;
 
 	}
 
-	// returns the first item on the queue (runs in O(1) time)
+	// Returns the first item on the queue -Ademir
 
 	public E front() {
 
 		if (isEmpty()) {
 
-			// empty
+
 
 			return null;
 
@@ -135,7 +125,7 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 	}
 
-	// returns the current size of the queue (runs in O(1) time)
+	// Returns the current size -Ademir
 
 	public int size() {
 
@@ -143,15 +133,11 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 	}
 
-	// returns a String representation of the queue elements, for testing
-
-	// purposes (runs in O(n) time)
-
 	public String toString() {
 
 		String str = "[";
 
-		// appending contents of queue into str, separated by ", "
+		// Sperating by commas (,) -Ademir
 
 		for (Node n = header; n != null; n = n.next) {
 
@@ -171,11 +157,11 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 	}
 
-	// a simple main method for testing. remove if you don't need.
+	
 
 	public static void main(String[] args) {
 
-		// creating an integer queue, adding numbers from 1 to 9
+		// Creating an integer queue, adding numbers from 1 to 9 -Ademir
 
 		SinglyLinkedQueue<Integer> q = new SinglyLinkedQueue<Integer>();
 
@@ -183,15 +169,12 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 			q.enqueue(i);
 
-			// printing queue after each enqueue operation
+			// Printing queue after each enqueue operation -Ademir
 
 			System.out.println(q);
 
 		}
 
-		// looping and calling dequeue method, printing the queue until queue is
-
-		// empty
 
 		while (!q.isEmpty()) {
 

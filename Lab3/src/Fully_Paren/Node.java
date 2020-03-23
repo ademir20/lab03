@@ -1,10 +1,10 @@
 package Fully_Paren;
 
 public class Node<T> {
-   private T data;// any data
-   private Node<T> next;// next node
+   private T element;
+   private Node<T> next;
   
-   // constructor
+   //Constructor -Ademir
    public Node(){
        this.setData(null);
        this.setNext(null);
@@ -15,13 +15,12 @@ public class Node<T> {
        this.setNext(null);
    }
 
-   // getter and setter
    public T getData() {
-       return data;
+       return element;
    }
 
    public void setData(T data) {
-       this.data = data;
+       this.element = data;
    }
 
    public Node<T> getNext() {

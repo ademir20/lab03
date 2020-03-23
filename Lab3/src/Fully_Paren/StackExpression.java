@@ -6,7 +6,7 @@ public class StackExpression<E> {
    private Node<E> root;
   
   
-   // constructor -Ademir
+   // Constructor -Ademir
    public StackExpression(){
        this.root=null;
    }
@@ -19,10 +19,7 @@ public class StackExpression<E> {
        this.root=node;
       
    }
-  
-  
- 
-  
+
    public E top(){
        E ret=null;
       

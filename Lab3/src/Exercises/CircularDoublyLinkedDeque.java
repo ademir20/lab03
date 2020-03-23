@@ -54,8 +54,8 @@ public class CircularDoublyLinkedDeque<E> implements Deque<E> {
         return result;
     }
 
-    // Helper method. Adds an element to the list after the specified
-    // node.
+    // Helper method. Adds an element to the list after the specified -Ademir
+ 
     private void addAfter(Elem<E> before, E obj) {
         Elem<E> after = before.next;
 
