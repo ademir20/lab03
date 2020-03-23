@@ -1,12 +1,13 @@
 package Exercises;
 
-public class SinglyLinkeQueue <E> {
+
+public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 
 	// references to head and tail nodes
 
-	private Node head, tail;
+	private Node header, tail;
 
-	private int size; // current size of the queue
+	private int currentSize; // current size of the queue
 
 	// private inner class representing a Node in linked list representation of
 
@@ -14,15 +15,15 @@ public class SinglyLinkeQueue <E> {
 
 	private class Node {
 
-		private E item;
+		private E element;
 
 		private Node next;
 
 		// constructor initializing item and next node
 
-		public Node(E item, Node next) {
+		public Node(E element, Node next) {
 
-			this.item = item;
+			this.element = element;
 
 			this.next = next;
 
@@ -32,13 +33,13 @@ public class SinglyLinkeQueue <E> {
 
 	// constructor, creates an empty queue
 
-	public SinglyLinkeQueue(){
+	public SinglyLinkedQueue(){
 
-		head = null;
+		header = null;
 
 		tail = null;
 
-		size = 0;
+		currentSize = 0;
 
 	}
 
@@ -46,23 +47,23 @@ public class SinglyLinkeQueue <E> {
 
 	public boolean isEmpty() {
 
-		return size == 0;
+		return currentSize == 0;
 
 	}
 
 	// adds an element to the tail (runs in O(1) time)
 
-	public void enqueue(E item) {
+	public void enqueue(E element) {
 
 		// creating a new node
 
-		Node newNode = new Node(item, null);
+		Node newNode = new Node(element, null);
 
 		// if queue is currently empty, adding as both head and tail
 
 		if (isEmpty()) {
 
-			head = newNode;
+			header = newNode;
 
 			tail = newNode;
 
@@ -78,7 +79,7 @@ public class SinglyLinkeQueue <E> {
 
 		// updating size
 
-		size++;
+		currentSize++;
 
 	}
 
@@ -86,19 +87,19 @@ public class SinglyLinkeQueue <E> {
 
 	public E dequeue() {
 
-		if (head != null) {
+		if (header != null) {
 
 			// getting item on front
 
-			E item = head.item;
+			E element = header.element;
 
 			// updating head
 
-			head = head.next;
+			header = header.next;
 
 			// if head became null, setting tail to null
 
-			if (head == null) {
+			if (header == null) {
 
 				tail = null;
 
@@ -106,11 +107,11 @@ public class SinglyLinkeQueue <E> {
 
 			// updating size
 
-			size--;
+			currentSize--;
 
 			// returning removed value
 
-			return item;
+			return element;
 
 		}
 
@@ -130,7 +131,7 @@ public class SinglyLinkeQueue <E> {
 
 		}
 
-		return head.item;
+		return header.element;
 
 	}
 
@@ -138,7 +139,7 @@ public class SinglyLinkeQueue <E> {
 
 	public int size() {
 
-		return size;
+		return currentSize;
 
 	}
 
@@ -152,9 +153,9 @@ public class SinglyLinkeQueue <E> {
 
 		// appending contents of queue into str, separated by ", "
 
-		for (Node n = head; n != null; n = n.next) {
+		for (Node n = header; n != null; n = n.next) {
 
-			str += n.item;
+			str += n.element;
 
 			if (n.next != null) {
 
@@ -176,7 +177,7 @@ public class SinglyLinkeQueue <E> {
 
 		// creating an integer queue, adding numbers from 1 to 9
 
-		SinglyLinkeQueue<Integer> q = new SinglyLinkeQueue<Integer>();
+		SinglyLinkedQueue<Integer> q = new SinglyLinkedQueue<Integer>();
 
 		for (int i = 1; i < 10; i++) {
 
@@ -201,5 +202,28 @@ public class SinglyLinkeQueue <E> {
 		}
 
 	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+		@SuppressWarnings("unchecked")
+		@Override
+		public E[] toArray() {
+			// TODO Auto-generated method stub
+			E[] theArray = (E[]) new Object[size()];
+			if(currentSize>0) {
+				
+				int i = 0;
+				Node transfer = header;
+				while(i<currentSize) {
+					theArray[i++] = transfer.element;
+					transfer = transfer.next;
+				}
+			}
+			return theArray;
+		}
+
 
 }

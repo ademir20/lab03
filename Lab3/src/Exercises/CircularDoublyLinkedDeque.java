@@ -41,7 +41,8 @@ public class CircularDoublyLinkedDeque<E> implements Deque<E> {
         head.previous = head;
         size = 0;
     }
-    public E[] toArray() {
+    @SuppressWarnings("unchecked")
+	public E[] toArray() {
         E result[] = (E []) new Object[size];
         int i = 0;
         Elem<E> current;
