@@ -9,6 +9,18 @@ public class StackSort {
 	public static LinkedListStack<Double> FirstStack = new LinkedListStack<Double>();
 	public static LinkedListStack<Double> SecondStack = new LinkedListStack<Double>();
 	
+	public static void main(String[] arg) {
+		scan();	
+	}
+	public static boolean isValid(String s) {
+
+		try {
+			double tester = Double.parseDouble(s);
+		}catch(NumberFormatException nfe) {
+			return false;
+		}
+		return true;
+	}
 	public static void scan() {
 		Double input;
 		Scanner sc = new Scanner(System.in);
@@ -18,7 +30,7 @@ public class StackSort {
 		s = sc.nextLine(); 
 
 		if(s.equals("")) {
-			printSets();
+			printStacks();
 			sc.close();
 			System.exit(0);
 		}
@@ -27,9 +39,9 @@ public class StackSort {
 			input = new Double(s);
 			
 			if(FirstStack.size() == 0 || SecondStack.size() ==0) {
-				populate(input);
+				insert(input);
 			}
-			addToStack(input);
+			stackingSort(input);
 		}else {
 			System.out.println("\n");
 			System.out.println("Please input a valid number \n");
@@ -37,23 +49,7 @@ public class StackSort {
 		scan();
 
 	}
-
-	public static void populate(Double input) {
-		if(FirstStack.size() == 0) {
-			FirstStack.push(input);
-			scan();
-		}
-		if(input<FirstStack.top()) {
-			SecondStack.push(FirstStack.pop());
-			FirstStack.push(input);
-			scan();
-		}else {
-			SecondStack.push(input);
-			scan();
-		}
-	}
-	
-	public static void addToStack(Double input) {
+public static void stackingSort(Double input) {
 		
 		if(input < FirstStack.top()) {
 			while(input <FirstStack.top()) {
@@ -82,17 +78,22 @@ public class StackSort {
 		}
 	}
 	
-	public static boolean isValid(String s) {
-
-		try {
-			double test = Double.parseDouble(s);
-		}catch(NumberFormatException nfe) {
-			return false;
+	public static void insert(Double input) {
+		if(FirstStack.size() == 0) {
+			FirstStack.push(input);
+			scan();
 		}
-		return true;
+		if(input<FirstStack.top()) {
+			SecondStack.push(FirstStack.pop());
+			FirstStack.push(input);
+			scan();
+		}else {
+			SecondStack.push(input);
+			scan();
+		}
 	}
 
-	public static void printSets() {
+	public static void printStacks() {
 		LinkedListStack<Double> testStack = new LinkedListStack<Double>();
 		while(FirstStack.size()>0) {
 			testStack.push(FirstStack.pop());
@@ -105,8 +106,4 @@ public class StackSort {
 		}
 	}
 	
-	
-	public static void main(String[] arg) {
-		scan();	
-	}
 }
