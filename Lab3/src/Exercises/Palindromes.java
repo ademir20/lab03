@@ -4,7 +4,7 @@ import java.util.Scanner;
 import queues.DoublyLinkedQueue;
 import stacks.LinkedListStack;
 
-public class isPalindrome  {
+public class Palindromes  {
 
 	public static void main(String[] args) {
 		scan();
