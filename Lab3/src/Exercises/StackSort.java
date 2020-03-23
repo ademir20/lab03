@@ -44,7 +44,7 @@ public class StackSort {
 			stackingSort(input);
 		}else {
 			System.out.println("\n");
-			System.out.println("Please input a valid number \n");
+			System.out.println("Please ENTER a valid number! \n");
 		}
 		scan();
 

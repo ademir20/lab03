@@ -158,7 +158,7 @@ public class SinglyLinkedQueue <E> implements queues.Queue<E> {
 	}
 
 	
-
+	//Small Test -Ademir
 	public static void main(String[] args) {
 
 		// Creating an integer queue, adding numbers from 1 to 9 -Ademir

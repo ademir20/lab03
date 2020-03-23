@@ -13,7 +13,7 @@ public class isPalindrome  {
 
 		String s;
 
-		System.out.println("Input value: (Press Enter twice to stop program):");
+		System.out.println("Enter a Palindrome: (Press Enter twice to stop program):");
 
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -55,9 +55,9 @@ public class isPalindrome  {
 
 	public static void printPalindrome(String s) {
 		if(adjustingPalindrome(s)) {
-			System.out.println("Palindrome");
+			System.out.println("\nIs a Palindrome!\n");
 		}else {
-			System.out.println("Not a Palindrome");
+			System.out.println("\nNot a Palindrome!.. Are you trying?\n");
 		}
 	}
 }
